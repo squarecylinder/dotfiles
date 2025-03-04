@@ -34,6 +34,7 @@ return { -- Autocompletion
 		luasnip.config.setup({})
 
 		local kind_icons = {
+			Copilot = "",
 			Text = "󰉿",
 			Method = "m",
 			Function = "󰊕",
@@ -119,10 +120,11 @@ return { -- Autocompletion
 				end, { "i", "s" }),
 			}),
 			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "path" },
+				{ name = "copilot", group_index = 2 },
+				{ name = "nvim_lsp", group_index = 2 },
+				{ name = "luasnip", group_index = 2 },
+				{ name = "buffer", group_index = 2 },
+				{ name = "path", group_index = 2 },
 			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
@@ -131,6 +133,7 @@ return { -- Autocompletion
 					vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 					-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 					vim_item.menu = ({
+						copilot = "[Copilot]",
 						nvim_lsp = "[LSP]",
 						luasnip = "[Snippet]",
 						buffer = "[Buffer]",
